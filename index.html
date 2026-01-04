@@ -12,12 +12,17 @@ body {
   font-family: Arial;
 }
 
+#info {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
 #grid {
   display: grid;
   grid-template-columns: repeat(8, 50px);
   gap: 5px;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .cell {
@@ -40,6 +45,7 @@ button {
   padding: 10px 14px;
   margin: 4px;
   font-size: 16px;
+  cursor: pointer;
 }
 </style>
 </head>
@@ -47,7 +53,7 @@ button {
 <body>
 
 <h1>Cyber Echo</h1>
-
+<div id="info"></div>
 <div id="grid"></div>
 
 <div>
@@ -60,8 +66,10 @@ button {
 <script>
 const size = 8;
 const grid = document.getElementById("grid");
+const info = document.getElementById("info");
 
-// Only P1 moves in this test
+let turn = 1;
+
 const players = {
   1: { x: 0, y: 0 },
   2: { x: 7, y: 7 }
@@ -83,16 +91,18 @@ function drawGrid() {
       grid.appendChild(cell);
     }
   }
+  info.innerText = Player ${turn}'s turn;
 }
 
 function move(dir) {
-  const p = players[1]; // only player 1
+  const p = players[turn];
 
   if (dir === "up" && p.y > 0) p.y--;
   if (dir === "down" && p.y < size - 1) p.y++;
   if (dir === "left" && p.x > 0) p.x--;
   if (dir === "right" && p.x < size - 1) p.x++;
 
+  turn = turn === 1 ? 2 : 1;
   drawGrid();
 }
 
