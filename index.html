@@ -51,16 +51,17 @@ button {
 <div id="grid"></div>
 
 <div>
-  <button onclick="alert('UP')">⬆️</button><br>
-  <button onclick="alert('LEFT')">⬅️</button>
-  <button onclick="alert('RIGHT')">➡️</button><br>
-  <button onclick="alert('DOWN')">⬇️</button>
+  <button onclick="move('up')">⬆️</button><br>
+  <button onclick="move('left')">⬅️</button>
+  <button onclick="move('right')">➡️</button><br>
+  <button onclick="move('down')">⬇️</button>
 </div>
 
 <script>
 const size = 8;
 const grid = document.getElementById("grid");
 
+// Only P1 moves in this test
 const players = {
   1: { x: 0, y: 0 },
   2: { x: 7, y: 7 }
@@ -82,6 +83,17 @@ function drawGrid() {
       grid.appendChild(cell);
     }
   }
+}
+
+function move(dir) {
+  const p = players[1]; // only player 1
+
+  if (dir === "up" && p.y > 0) p.y--;
+  if (dir === "down" && p.y < size - 1) p.y++;
+  if (dir === "left" && p.x > 0) p.x--;
+  if (dir === "right" && p.x < size - 1) p.x++;
+
+  drawGrid();
 }
 
 window.onload = drawGrid;
