@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Cyber Echo</title>
-
 <style>
 body {
   background: black;
@@ -12,17 +11,12 @@ body {
   font-family: Arial;
 }
 
-#info {
-  margin-top: 10px;
-  font-size: 18px;
-}
-
 #grid {
   display: grid;
   grid-template-columns: repeat(8, 50px);
   gap: 5px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .cell {
@@ -49,64 +43,44 @@ button {
 }
 </style>
 </head>
-
 <body>
 
 <h1>Cyber Echo</h1>
-<div id="info"></div>
 <div id="grid"></div>
 
 <div>
-  <button onclick="move('up')">⬆️</button><br>
-  <button onclick="move('left')">⬅️</button>
-  <button onclick="move('right')">➡️</button><br>
-  <button onclick="move('down')">⬇️</button>
+  <button>⬆️</button><br>
+  <button>⬅️</button>
+  <button>➡️</button><br>
+  <button>⬇️</button>
 </div>
 
 <script>
-const size = 8;
-const grid = document.getElementById("grid");
-const info = document.getElementById("info");
+window.onload = function() {
+  const size = 8;
+  const grid = document.getElementById("grid");
+  const players = {
+    1: { x: 0, y: 0 },
+    2: { x: 7, y: 7 }
+  };
 
-let turn = 1;
-
-const players = {
-  1: { x: 0, y: 0 },
-  2: { x: 7, y: 7 }
-};
-
-function drawGrid() {
-  grid.innerHTML = "";
-  for (let y = 0; y < size; y++) {
-    for (let x = 0; x < size; x++) {
-      const cell = document.createElement("div");
-      cell.className = "cell";
-
-      if (players[1].x === x && players[1].y === y)
-        cell.innerHTML = "<span class='p1'>P1</span>";
-
-      if (players[2].x === x && players[2].y === y)
-        cell.innerHTML = "<span class='p2'>P2</span>";
-
-      grid.appendChild(cell);
+  function drawGrid() {
+    grid.innerHTML = "";
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        if (players[1].x === x && players[1].y === y)
+          cell.innerHTML = "<span class='p1'>P1</span>";
+        if (players[2].x === x && players[2].y === y)
+          cell.innerHTML = "<span class='p2'>P2</span>";
+        grid.appendChild(cell);
+      }
     }
   }
-  info.innerText = Player ${turn}'s turn;
-}
 
-function move(dir) {
-  const p = players[turn];
-
-  if (dir === "up" && p.y > 0) p.y--;
-  if (dir === "down" && p.y < size - 1) p.y++;
-  if (dir === "left" && p.x > 0) p.x--;
-  if (dir === "right" && p.x < size - 1) p.x++;
-
-  turn = turn === 1 ? 2 : 1;
   drawGrid();
-}
-
-window.onload = drawGrid;
+};
 </script>
 
 </body>
