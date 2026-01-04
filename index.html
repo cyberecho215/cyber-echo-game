@@ -1,77 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cyber Echo</title>
-  <style>
-    body {
-      background: #000; /* black background */
-      color: #00aaff; /* blue text */
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<title>Cyber Echo</title>
+<style>
+body {
+  background-color: #000;
+  color: #00aaff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
 
-    h1 {
-      margin-top: 10px;
-    }
+h1 {
+  margin-top: 20px;
+}
 
-    #info {
-      margin: 10px;
-      font-size: 18px;
-    }
+#info {
+  margin: 10px;
+  font-size: 18px;
+}
 
-    #grid {
-      display: grid;
-      grid-template-columns: repeat(8, 50px);
-      grid-template-rows: repeat(8, 50px);
-      gap: 2px;
-      justify-content: center;
-      margin: 20px auto;
-    }
+#grid {
+  display: grid;
+  grid-template-columns: repeat(8, 60px);
+  grid-template-rows: repeat(8, 60px);
+  gap: 2px;
+  justify-content: center;
+  margin: 20px auto;
+}
 
-    .cell {
-  width: 50px;
-  height: 50px;
-  background: #222;         /* dark gray so you can see the cell */
-  border: 2px solid #00aaff; /* bright blue borders */
+.cell {
+  width: 60px;
+  height: 60px;
+  background-color: #222;       /* dark gray background */
+  border: 2px solid #00aaff;    /* bright cyan border */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  color: white;             /* default text color inside cell */
+  font-size: 20px;
 }
 
 .cell:hover {
-  background: #555;         /* slightly lighter on hover */
+  background-color: #555;
 }
 
-    .p1 {
-      color: red;
-      font-weight: bold;
-    }
+.p1 {
+  color: red;
+  font-weight: bold;
+}
 
-    .p2 {
-      color: lime;
-      font-weight: bold;
-    }
+.p2 {
+  color: lime;
+  font-weight: bold;
+}
 
-    button {
-      background: #00aaff;
-      color: black;
-      border: none;
-      padding: 10px 15px;
-      margin: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+button {
+  background-color: #00aaff;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-    button:disabled {
-      background: #333;
-      color: #777;
-    }
-  </style>
+button:disabled {
+  background-color: #333;
+  color: #777;
+}
+</style>
 </head>
 <body>
+
 <h1>Cyber Echo</h1>
 <div id="info"></div>
 <div id="grid"></div>
@@ -149,7 +151,9 @@ function resetGame() {
   drawGrid();
 }
 
+// draw grid initially
 drawGrid();
 </script>
+
 </body>
 </html>
