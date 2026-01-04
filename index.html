@@ -49,10 +49,10 @@ button {
 <div id="grid"></div>
 
 <div>
-  <button onclick="alert('UP')">⬆️</button><br>
-  <button onclick="alert('LEFT')">⬅️</button>
-  <button onclick="alert('RIGHT')">➡️</button><br>
-  <button onclick="alert('DOWN')">⬇️</button>
+  <button onclick="move('up')">⬆️</button><br>
+  <button onclick="move('left')">⬅️</button>
+  <button onclick="move('right')">➡️</button><br>
+  <button onclick="move('down')">⬇️</button>
 </div>
 
 <script>
@@ -80,7 +80,21 @@ window.onload = function() {
     }
   }
 
+  function move(dir) {
+    const p = players[1]; // Only P1 moves in this step
+
+    if (dir === "up" && p.y > 0) p.y--;
+    if (dir === "down" && p.y < size - 1) p.y++;
+    if (dir === "left" && p.x > 0) p.x--;
+    if (dir === "right" && p.x < size - 1) p.x++;
+
+    drawGrid();
+  }
+
   drawGrid();
+
+  // Make move function accessible to buttons
+  window.move = move;
 };
 </script>
 
