@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Grid JS Test</title>
+<title>Cyber Echo</title>
 
 <style>
 body {
@@ -17,7 +17,7 @@ body {
   grid-template-columns: repeat(8, 50px);
   gap: 5px;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .cell {
@@ -25,23 +25,51 @@ body {
   height: 50px;
   background: #222;
   border: 2px solid #00aaff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
+
+.p1 { color: red; }
+.p2 { color: lime; }
 </style>
 </head>
 
 <body>
 
-<h1>GRID JS TEST</h1>
+<h1>Cyber Echo</h1>
 <div id="grid"></div>
 
 <script>
+const size = 8;
 const grid = document.getElementById("grid");
 
-for (let i = 0; i < 64; i++) {
-  const cell = document.createElement("div");
-  cell.className = "cell";
-  grid.appendChild(cell);
+const players = {
+  1: { x: 0, y: 0 },
+  2: { x: 7, y: 7 }
+};
+
+function drawGrid() {
+  grid.innerHTML = "";
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+
+      if (players[1].x === x && players[1].y === y) {
+        cell.innerHTML = "<span class='p1'>P1</span>";
+      }
+      if (players[2].x === x && players[2].y === y) {
+        cell.innerHTML = "<span class='p2'>P2</span>";
+      }
+
+      grid.appendChild(cell);
+    }
+  }
 }
+
+drawGrid();
 </script>
 
 </body>
