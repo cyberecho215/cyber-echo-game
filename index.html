@@ -49,16 +49,17 @@ button {
 <div id="grid"></div>
 
 <div>
-  <button>⬆️</button><br>
-  <button>⬅️</button>
-  <button>➡️</button><br>
-  <button>⬇️</button>
+  <button onclick="move('up')">⬆️</button><br>
+  <button onclick="move('left')">⬅️</button>
+  <button onclick="move('right')">➡️</button><br>
+  <button onclick="move('down')">⬇️</button>
 </div>
 
 <script>
 window.onload = function() {
   const size = 8;
   const grid = document.getElementById("grid");
+
   const players = {
     1: { x: 0, y: 0 },
     2: { x: 7, y: 7 }
@@ -79,7 +80,21 @@ window.onload = function() {
     }
   }
 
+  function move(dir) {
+    const p = players[1]; // only P1 moves for now
+
+    if (dir === "up" && p.y > 0) p.y--;
+    if (dir === "down" && p.y < size - 1) p.y++;
+    if (dir === "left" && p.x > 0) p.x--;
+    if (dir === "right" && p.x < size - 1) p.x++;
+
+    drawGrid();
+  }
+
   drawGrid();
+
+  // Expose move function globally
+  window.move = move;
 };
 </script>
 
